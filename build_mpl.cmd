@@ -5,8 +5,8 @@ rem using Windows SDK 7.0 and 7.1
 
 setlocal
 rem Adjust the following if necessary
-set MPLSRC=%~dp0\matplotlib-1.2.0
-set INCLIB=%~dp0\matplotlib-1.2-build-dependencies
+set MPLSRC=%~dp0\matplotlib
+set INCLIB=%~dp0\matplotlib-head-build-dependencies
 set BLDOPT=bdist_wininst --user-access-control=auto
 cd /D %MPLSRC%
 

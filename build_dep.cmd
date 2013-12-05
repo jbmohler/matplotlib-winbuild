@@ -4,7 +4,7 @@ rem Build Matplotlib Dependencies
 setlocal
 set MSBUILD=C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe
 set CMAKE="C:\Program Files (x86)\CMake 2.8\bin\cmake.exe"
-set INCLIB=%~dp0\matplotlib-1.2-build-dependencies
+set INCLIB=%~dp0\matplotlib-head-build-dependencies
 set BUILD=%~dp0\build
 
 rd /S /Q %INCLIB%
@@ -45,17 +45,17 @@ set FREETYPE=%BUILD%\freetype-2.4.11
 copy /Y /B ft2411.zip %INCLIB%
 
 rem Get zlib
-py -3 fetch.py http://zlib.net/zlib127.zip
-py -3 unzip.py zlib127.zip %BUILD%
-set ZLIB=%BUILD%\zlib-1.2.7
-copy /Y /B zlib127.zip %INCLIB%
+py -3 fetch.py http://zlib.net/zlib128.zip
+py -3 unzip.py zlib128.zip %BUILD%
+set ZLIB=%BUILD%\zlib-1.2.8
+copy /Y /B zlib128.zip %INCLIB%
 
 rem Get libpng
-rem py -3 fetch.py ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.5.14.tar.gz
-py -3 fetch.py http://hivelocity.dl.sourceforge.net/project/libpng/libpng15/1.5.14/libpng-1.5.14.tar.gz
-py -3 untar.py libpng-1.5.14.tar.gz %BUILD%
-set LIBPNG=%BUILD%\libpng-1.5.14
-copy /Y /B libpng-1.5.14.tar.gz %INCLIB%
+rem py -3 fetch.py ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.6.7.tar.gz
+py -3 fetch.py http://hivelocity.dl.sourceforge.net/project/libpng/libpng16/1.6.7/libpng-1.6.7.tar.gz
+py -3 untar.py libpng-1.6.7.tar.gz %BUILD%
+set LIBPNG=%BUILD%\libpng-1.6.7
+copy /Y /B libpng-1.6.7.tar.gz %INCLIB%
 
 rem Get tcl/tk
 py -3 fetch.py http://hivelocity.dl.sourceforge.net/project/tcl/Tcl/8.5.13/tcl8513-src.zip
@@ -105,7 +105,7 @@ cd %BUILDDIR%
 nmake -f Makefile
 copy /Y /B *.dll %INCLIB%
 copy /Y /B *.lib %INCLIB%
-copy /Y /B libpng15_static.lib %INCLIB%\png.lib
+copy /Y /B libpng16_static.lib %INCLIB%\png.lib
 endlocal
 
 rem Build freetype
@@ -156,7 +156,7 @@ cd %BUILDDIR%
 nmake -f Makefile
 copy /Y /B *.dll %INCLIB%
 copy /Y /B *.lib %INCLIB%
-copy /Y /B libpng15_static.lib %INCLIB%\png.lib
+copy /Y /B libpng16_static.lib %INCLIB%\png.lib
 endlocal
 
 rem Build freetype
@@ -207,7 +207,7 @@ cd %BUILDDIR%
 nmake -f Makefile
 copy /Y /B *.dll %INCLIB%
 copy /Y /B *.lib %INCLIB%
-copy /Y /B libpng15_static.lib %INCLIB%\png.lib
+copy /Y /B libpng16_static.lib %INCLIB%\png.lib
 endlocal
 
 rem Build freetype
@@ -258,7 +258,7 @@ cd %BUILDDIR%
 nmake -f Makefile
 copy /Y /B *.dll %INCLIB%
 copy /Y /B *.lib %INCLIB%
-copy /Y /B libpng15_static.lib %INCLIB%\png.lib
+copy /Y /B libpng16_static.lib %INCLIB%\png.lib
 endlocal
 
 rem Build freetype
