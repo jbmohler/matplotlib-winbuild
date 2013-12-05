@@ -13,3 +13,8 @@ The build goes like this:
 	build_dep.cmd
 	git clone https://github.com/matplotlib/matplotlib.git
 	build_mpl.cmd
+
+So far I've selected the Python target version in build\_mpl.cmd by commenting
+out the versions I wasn't interested in building.  A nice improvement would be
+to break up build\_mpl.cmd into scripts for each version or a command line
+parameter for selecting a Python version.
