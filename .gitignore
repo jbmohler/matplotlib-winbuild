@@ -3,8 +3,3 @@ matplotlib
 matplotlib-head-build-dependencies
 *.zip
 *.tar.gz
-
-unzip.py
-untar.py
-fixproj.py
-fetch.py
