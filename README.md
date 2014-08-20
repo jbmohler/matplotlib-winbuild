@@ -22,6 +22,6 @@ To build & install matplotlib in your Python, do:
 
 	git clone https://github.com/matplotlib/matplotlib
 	git clone https://github.com/jbmohler/matplotlib-winbuild
-	python buildall.py
+	python matplotlib-winbuild\\buildall.py
 
 The build script will auto-detect Python version & 32/64 bit automatically.

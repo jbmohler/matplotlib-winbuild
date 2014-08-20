@@ -1,23 +1,26 @@
 import sys
 import os
-import buildutils
+import utils
 
-buildutils.build_tcl()
-buildutils.build_zlib()
-buildutils.build_libpng()
-buildutils.build_freetype()
+utils.build_tcl()
+utils.build_zlib()
+utils.build_libpng()
+utils.build_freetype()
 
 if 'LIB' in os.environ:
-    os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], buildutils.config_dir())
+    os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], utils.config_dir())
 else:
-    os.environ['LIB'] = buildutils.config_dir()
+    os.environ['LIB'] = utils.config_dir()
 
 os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], os.path.join(os.path.dirname(sys.executable), 'tcl'))
 
 if 'INCLUDE' in os.environ:
-    os.environ['INCLUDE'] = '{};{};{}'.format(os.environ['INCLUDE'], buildutils.config_dir(), buildutils.tcl_config_dir())
+    os.environ['INCLUDE'] = '{};{};{}'.format(os.environ['INCLUDE'], utils.config_dir(), utils.tcl_config_dir())
 else:
-    os.environ['INCLUDE'] = '{};{}'.format(buildutils.config_dir(), buildutils.tcl_config_dir())
+    os.environ['INCLUDE'] = '{};{}'.format(utils.config_dir(), utils.tcl_config_dir())
 
-os.chdir('..\\matplotlib')
+# Wouldn't it be nice if related mpl dir could be set on command line?
+mydir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.join(mydir, '..', 'matplotlib'))
+# Wouldn't it be nice if 'install' wasn't hard-coded?
 os.system('{} setup.py install'.format(sys.executable))
