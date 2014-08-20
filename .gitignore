@@ -1,5 +1,3 @@
 build
-matplotlib
-matplotlib-head-build-dependencies
-*.zip
-*.tar.gz
+*~
+*.pyc
