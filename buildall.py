@@ -41,5 +41,5 @@ if __name__ == '__main__':
     parser.add_option('--setup_cmd', '-s', action="store", dest="setup_cmd",
                                            default="install", help="Command to pass to setup.py")
     options, rem = parser.parse_args()
-    print options, rem
-    #main(options)
+
+    main(options)
