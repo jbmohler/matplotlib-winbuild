@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 import utils
 import optparse
 
@@ -9,6 +10,8 @@ def main(options):
     utils.build_zlib()
     utils.build_libpng()
     utils.build_freetype()
+
+    shutil.copy(os.path.join(utils.DEPSSRC, 'stdint.h'), os.path.join(utils.config_dir(), 'stdint.h'))
 
     if 'LIB' in os.environ:
         os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], utils.config_dir())
