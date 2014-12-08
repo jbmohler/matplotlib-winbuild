@@ -14,17 +14,22 @@ def main(options):
 
     shutil.copy(os.path.join(utils.DEPSSRC, 'stdint.h'), os.path.join(utils.config_dir(), 'stdint.h'))
 
+    libs = []
     if 'LIB' in os.environ:
-        os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], utils.config_dir())
-    else:
-        os.environ['LIB'] = utils.config_dir()
+        libs.append(os.environ['LIB'])
+    libs.append(utils.config_dir())
+    if not options.no_tcl:
+        # tcl lib comes with python install
+        libs.append(os.path.join(os.path.dirname(sys.executable), 'tcl'))
+    os.environ['LIB'] = ';'.join(libs)
 
-    os.environ['LIB'] = '{};{}'.format(os.environ['LIB'], os.path.join(os.path.dirname(sys.executable), 'tcl'))
-
+    includes = []
     if 'INCLUDE' in os.environ:
-        os.environ['INCLUDE'] = '{};{};{}'.format(os.environ['INCLUDE'], utils.config_dir(), utils.tcl_config_dir())
-    else:
-        os.environ['INCLUDE'] = '{};{}'.format(utils.config_dir(), utils.tcl_config_dir())
+        includes.append(os.environ['INCLUDE'])
+    includes.append(utils.config_dir())
+    if not options.no_tcl:
+        includes.append(utils.tcl_config_dir())
+    os.environ['INCLUDE'] = ';'.join(includes)
 
     os.chdir(options.mpl_dir)
 
@@ -45,7 +50,9 @@ if __name__ == '__main__':
     parser.add_option('--setup_cmd', '-s', action="store", dest="setup_cmd",
                                            default="install", help="Command to pass to setup.py")
     parser.add_option('--no_tcl', '-n', action="store_true", dest="no_tcl",
-                                          default=False, help="Don't build Tcl/Tk (for headless MPL servers)")
+                                          default=False, help="Don't build Tcl/Tk (for headless MPL servers); "
+                                                              "MPL build process will discover Tcl/Tk support "
+                                                              "if installed elsewhere on your system")
     options, rem = parser.parse_args()
 
     main(options)
