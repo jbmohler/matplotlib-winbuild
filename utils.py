@@ -121,7 +121,7 @@ copy /Y /B zconf.h %INCLIB%
 def build_zlib():
     inclib = config_dir()
     if not os.path.exists(inclib):
-        os.mkdir(inclib)
+        os.makedirs(inclib)
 
     distfile = os.path.join(DEPSSRC, 'zlib128.zip')
     compfile = os.path.join(inclib, 'z.lib')
